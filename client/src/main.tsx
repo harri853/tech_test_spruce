@@ -143,7 +143,13 @@ const Main: React.FC = () => {
 
   return (
     <div className='flex flex-col mt-10 items-center gap-10'>
+      {!gameStarted && (
+        <div className='absolute top-0 left-0 m-4'>
+          <img src="/assets/spruce.webp" alt="Spruce Tree" className="w-16 h-16" />
+        </div>
+      )}
       <div className='font-bold text-2xl'>Tic Tac Toe</div>
+      
       {!gameStarted ? (
         <Slider boardSize={boardSize} handleBoardSizeChange={handleBoardSizeChange} startGame={startGame} />
       ) : (
