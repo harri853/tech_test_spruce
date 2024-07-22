@@ -1,8 +1,11 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import './assets/index'
-import { Main } from './main'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './assets/index.css';
+import Main  from './main';
 
-
-const root = createRoot(document.getElementById('root')!)
-root.render(<Main />)
+ReactDOM.render(
+  <React.StrictMode>
+    <Main />
+  </React.StrictMode>,
+  document.getElementById('root')
+);

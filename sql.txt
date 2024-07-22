@@ -1,0 +1,8 @@
+ CREATE TABLE game_results (
+     id SERIAL PRIMARY KEY,
+     player VARCHAR(1) NOT NULL,
+     result VARCHAR(10) NOT NULL,
+     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ );
+
+SELECT * FROM game_results;

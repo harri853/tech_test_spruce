@@ -1,6 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const tailwindcss = require('tailwindcss')
-const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const tailwindcss = require('tailwindcss');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = (env) => ({
   mode: 'development',
@@ -8,13 +9,15 @@ module.exports = (env) => ({
   devtool: 'source-map',
   output: {
     publicPath: '/',
-    filename: '[name].[contenthash].js'
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.(webp|jpe?g|svg|png)$/i,
@@ -38,17 +41,19 @@ module.exports = (env) => ({
     ]
   },
   resolve: {
-    symlinks: false,
     extensions: ['.ts', '.tsx', '.js', '.css']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: path.resolve(__dirname, 'public', 'index.html') // Correctly specify the path to index.html
     }),
     new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env) })
   ],
   devServer: {
     historyApiFallback: true,
-    port: 3001
+    port: 3002,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   }
-})
+});
