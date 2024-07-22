@@ -1,5 +1,5 @@
 const request = require('supertest');
-require('dotenv').config({ path: './server/.env.test' }); // Ensure this is loaded before the server is imported
+require('dotenv').config({ path: './server/.env.test' }); 
 const { app, server } = require('../server');
 const pool = require('../config/db.config');
 
